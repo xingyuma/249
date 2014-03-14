@@ -36,6 +36,41 @@ public class GraphGenerator{
 		}
 	}
 	
+	public static void genPowerLaw(int n, int degree){
+		ArrayList<Integer> degreeList = new ArrayList<Integer>();
+		HashMap<Integer,TreeSet<Integer>> connect = new HashMap<Integer,TreeSet<Integer>>();
+		for (int i = 0; i < n; i++){
+			degreeList.add(i,(Integer)(degree * (i*i)/(n*n))+1);
+			connect.put(i,new TreeSet<Integer>());
+		}
+		for (int i = 0; i < n; i++) {
+//			System.out.println(i);
+			int cnt = 0;
+			while (connect.get(i).size() < degreeList.get(i) && cnt < 20 ){
+				int k = (int)((Math.random()*n));
+//				System.out.println(cnt+" "+connect.get(i).size() +" "+ degreeList.get(i)+" "+connect.get(k).size() +" "+ degreeList.get(k));
+				TreeSet<Integer> another = connect.get(k);
+				if (another.size() > degreeList.get(k)) {
+					cnt++;
+					continue;
+				}
+				TreeSet<Integer> set = connect.get(i);
+				another.add(i);
+				connect.put(k,another);
+				set.add(k);
+				connect.put(i,set);
+				cnt = 0;
+			}
+		}
+		for (int i = 0; i < n; i++){
+			TreeSet<Integer> set = connect.get(i);
+			for (Integer j:set){
+				System.out.println(i+" "+j);
+			}
+		}
+
+	}
+	
 	public static void genSkewed(int n, int degree) {
 		ArrayList<Integer> degreeList = new ArrayList<Integer>();
 		HashMap<Integer,TreeSet<Integer>> connect = new HashMap<Integer,TreeSet<Integer>>();
@@ -66,8 +101,9 @@ public class GraphGenerator{
 	}
 	
 	public static void main(String args[]){
+		genPowerLaw(1000,400);
 //		genSkewed(1000,500);
-			ArrayList<Integer> size = new ArrayList<Integer>();
+/*			ArrayList<Integer> size = new ArrayList<Integer>();
 			for (int i = 0; i < 10; i++){
 				size.add(100);
 			}
@@ -82,6 +118,6 @@ public class GraphGenerator{
 			frac.add(0.25);
 			frac.add(0.30);
 			frac.add(0.35);
-			genLocal(10, size, frac);
+			genLocal(10, size, frac);*/
 	}
 }

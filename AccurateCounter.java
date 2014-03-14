@@ -25,8 +25,9 @@ public class AccurateCounter{
 	}
 
 	public static void main(String args[]) throws Exception{
-		System.out.println(args.length);
-		String fileName = args[1];
+//		System.out.println(args[0]);
+		String fileName = args[0];
+//		System.out.println(args+"  "+args[0]);
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
 		String data = null;
 		ArrayList<HashSet<Integer>> set = new ArrayList<HashSet<Integer>>();
@@ -40,5 +41,6 @@ public class AccurateCounter{
 			set.get(x).add(y);
 		}
 		countDegree(set);
+//		System.out.println(countTriangle(set));
 	}
 }
