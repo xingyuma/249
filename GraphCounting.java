@@ -4,7 +4,7 @@ import java.io.*;
 public class GraphCounting{
 	
 	public static void myRun(int part) throws Exception{
-				String fileName = "node2.txt";
+				String fileName = "node1.txt";
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
 		String data = null;
 		
@@ -124,7 +124,7 @@ public class GraphCounting{
 			if (statWedge.keySet().contains(i) && statTriangle.keySet().contains(i)) {
 			estimatedTriangle += statAllWedge.get(i) * (statTriangle.get(i) *1.0)/(statWedge.get(i)*1.0);
 			//System.out.println(statAllWedge.get(i)+" "+statWedge.get(i)+ "  "+statTriangle.get(i) +" "+(statTriangle.get(i) *0.5)/(statWedge.get(i)*1.0));
-	//		System.out.println(i*part + "  "+(statTriangle.get(i) *0.5)/(statWedge.get(i)*1.0));
+			System.out.println((statTriangle.get(i) *0.5)/(statWedge.get(i)*1.0));
 			}
 		}
 		System.out.println(estimatedTriangle/6);
@@ -134,7 +134,7 @@ public class GraphCounting{
 	public static void main(String args[]) throws Exception{
 		for (int ii = 1; ii <=1 ; ii++){
 			for (int i = 0; i < 500; i++){
-				myRun(ii*4000);
+				myRun(ii*10);
 			}
 		}
 	}
